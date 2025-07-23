@@ -17,7 +17,7 @@ from autogen_core.tools import FunctionTool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 from nearest_ports import *
-from langapp import parse_rfq
+from autogen.rfqbot.langapp import parse_rfq
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
