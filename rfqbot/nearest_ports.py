@@ -5,7 +5,7 @@ load_dotenv()
 # Helper function for Haversine distance calculation
 import math
 import difflib
-from port_list import MAJOR_TRADING_PORTS_DATA
+from portlist import MAJOR_TRADING_PORTS_DATA
 
 def get_nearest_ports(address: str) -> str: # list[dict]:
     """
