@@ -16,7 +16,7 @@ from autogen_core.tools import FunctionTool
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from nearest_ports import *
+from tool_functions import *
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
@@ -26,8 +26,8 @@ gemini_model_client = OpenAIChatCompletionClient(
 
 # ollama_model_client = OllamaChatCompletionClient(model="llama3.2")
 
-nearest_port_tool = FunctionTool(get_nearest_ports,description="Tool that gives port suggestions")
-find_ports_tool = FunctionTool(find_ports,description='Tool that suggests ports from list of major ports')
+nearest_port_tool = FunctionTool(get_nearest_ports,description="Tool that gives port suggestions by calling geoapify api")
+find_ports_tool = FunctionTool(find_ports,description='Tool uses fuzzy logic to get ports in a particular city or country')
 
 agent1 = AssistantAgent(
     name = 'AI_Assistant',

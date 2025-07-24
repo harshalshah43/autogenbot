@@ -1,22 +1,22 @@
 {
     "pol": [
-        "Houston"
+        "houston"
     ],
     "pod": [
-        "Hazira"
+        "hazira"
     ],
     "contact_names": [
-        "Raj Sharma"
+        "jennifer"
     ],
     "contact_numbers": [
-        "8652221285"
+        "66778899"
     ],
     "pickup_addresses": [
-        "Same as Port of Houston"
+        "houston"
     ],
     "delivery_addresses": [
-        "Burns & McDonnell c/o Summit Next Gen, LLC 3025 Penn City Road Houston, TX 77015"
+        "hazira"
     ],
-    "package_summary": "HS Code: 8419 5091\n1 x TEXAS TOWER 130-E03 (17,800 mm x 4700 mm x 5200 mm, 100 MT)\n1 x TEXAS TOWER 130-E05 (25,300 mm x 4500 mm x 5000 mm, 148 MT)\n1 x TEXAS TOWER 132-E02 (22,000 mm x 4500 mm x 4100 mm, 98 MT)",
-    "rfq_id": "2768"
+    "package_summary": "HS Code: 8419 5091\nItem 1: TEXAS TOWER 130-E03, 17,800mm x 4700mm x 5200mm, 100 MT, Qty: 1\nItem 2: TEXAS TOWER 130-E05, 25,300mm x 4500mm x 5000mm, 148 MT, Qty: 1\nItem 3: TEXAS TOWER 132-E02, 22,000mm x 4500mm x 4100mm, 98 MT, Qty: 1",
+    "rfq_id": "9287"
 }

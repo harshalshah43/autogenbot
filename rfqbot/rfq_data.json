@@ -9,101 +9,62 @@
                 "type": "UserMessage"
             },
             {
-                "content": "Hello! I can help you with your shipping needs. To get started, I need some information from you.\n\nFirst, can you tell me the port of loading and port of delivery? If you're unsure of the exact port names, let me know the city and I can suggest some options.\n",
+                "content": "Hello! How can I help you with your shipping needs today? I can help you with a new shipping quote. To get started, I need some information from you.\n\nFirst, could you please provide the following details:\n\n*   **Port of Loading:**\n*   **Port of Delivery:**\n*   **Pickup Address:**\n*   **Delivery Address:**\n*   **Package Summary:** (e.g., type of goods, dimensions, weight, quantity)\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "We are working on a budgetary enquiry and need rates\n \nDelivery address:  Burns & McDonnell c/o Summit Next Gen, LLC 3025 Penn City Road Houston, TX 77015\n",
+                "content": "pol is port of houston, pod is hazira addresses are pol and pod only =, company name is aaron dynamics, jennifer@aarondynamics.co.uk,66778899",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I can help with that. I need a bit more information to provide you with accurate rates.\n\nBesides the delivery address, could you please provide the following:\n\n*   **Port of Loading:** Where will the shipment be coming from? If you're unsure, please provide the city.\n*   **Pickup Address:** Where will the shipment be picked up from?\n*   **Package Summary:** What are you shipping (e.g., machinery, electronics, clothing) and what are the dimensions and weight of the shipment?\n\nI also need you to provide your details\n\n*   **Name:**\n*   **Company Name:**\n*   **Contact Number:**\n*   **Email ID:**\n",
+                "content": "Okay, I need a bit more information to proceed.\n\n1.  Could you please confirm the full pickup and delivery addresses?\n2.  Also, can you provide a package summary, including the type of goods, dimensions, weight, and quantity?\n3.  What is your name?\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "please suggest pol, pod is hazira",
+                "content": "HS Code: 8419 5091 Sr noEquipmentLength(mm)Width       (mm)Height(mm)Unit Weight in MTQty1TEXAS TOWER 130-E0317,8004700520010012TEXAS TOWER 130-E0525,3004500500014813TEXAS TOWER 132-E0222,00045004100981",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I can help with suggesting a port of loading. Could you please provide the city from which the shipment will be loaded?\n",
+                "content": "Thank you for the package summary.\n\nI still need the full pickup and delivery addresses, and your name. Once I have that, I\u2019ll generate a quote for you.\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "houston",
+                "content": "same as pol and pod, confirm this rfq",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": [
-                    {
-                        "id": "",
-                        "arguments": "{\"input_city\":\"houston\"}",
-                        "name": "find_ports"
-                    }
-                ],
+                "content": "Okay, just to confirm, the pickup address is the same as the Port of Loading (Houston), and the delivery address is the same as the Port of Delivery (Hazira). Is that correct? Also can you provide your name?\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": [
-                    {
-                        "content": "Port of Houston",
-                        "name": "find_ports",
-                        "call_id": "",
-                        "is_error": false
-                    }
-                ],
-                "type": "FunctionExecutionResultMessage"
-            },
-            {
-                "content": "cokay confirm it",
+                "content": "yes",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, so the Port of Loading is Houston. To confirm, the Port of Delivery is Hazira, and the Delivery address is Burns & McDonnell c/o Summit Next Gen, LLC 3025 Penn City Road Houston, TX 77015.\n\nI still need the following information to proceed:\n\n*   **Pickup Address:** Where will the shipment be picked up from?\n*   **Package Summary:** What are you shipping (e.g., machinery, electronics, clothing) and what are the dimensions and weight of the shipment?\n*   **Name:**\n*   **Company Name:**\n*   **Contact Number:**\n*   **Email ID:**\n",
+                "content": "Could you please provide your name?\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "Sending you package details \n\nHS Code: 8419 5091\n \nSr no\tEquipment\tLength\n(mm)\tWidth       (mm)\tHeight\n(mm)\tUnit Weight in MT\tQty\n1\tTEXAS TOWER 130-E03\t17,800\t4700\t5200\t100\t1\n2\tTEXAS TOWER 130-E05\t25,300\t4500\t5000\t148\t1\n3\tTEXAS TOWER 132-E02\t22,000\t4500\t4100\t98\t1\n",
+                "content": "jennifer ",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Thank you for the package details. I still need the following information to proceed:\n\n*   **Pickup Address:** Where will the shipment be picked up from?\n*   **Name:**\n*   **Company Name:**\n*   **Contact Number:**\n*   **Email ID:**\n",
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": "pick up is samle as pol, following are details:- Name: Raj Sharma, raj.sharma@abc.co.in, 8652221285",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": "Thank you, Raj.\n\nI still need the following information to proceed:\n\n*   **Company Name:**\n",
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": "abc transport and shipping co.",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": "Okay, I have collected all the necessary information:\n\n*   **Port of Loading:** Port of Houston\n*   **Port of Delivery:** Hazira\n*   **Pickup Address:** Same as Port of Houston\n*   **Delivery Address:** Burns & McDonnell c/o Summit Next Gen, LLC 3025 Penn City Road Houston, TX 77015\n*   **Package Summary:**\n    *   HS Code: 8419 5091\n    *   1 x TEXAS TOWER 130-E03 (17,800 mm x 4700 mm x 5200 mm, 100 MT)\n    *   1 x TEXAS TOWER 130-E05 (25,300 mm x 4500 mm x 5000 mm, 148 MT)\n    *   1 x TEXAS TOWER 132-E02 (22,000 mm x 4500 mm x 4100 mm, 98 MT)\n*   **Name:** Raj Sharma\n*   **Company Name:** abc transport and shipping co.\n*   **Contact Number:** 8652221285\n*   **Email ID:** raj.sharma@abc.co.in\n\nYour RFQ ID is 2768.\n\nThank you for providing all the details!\n",
+                "content": "Thank you, Jennifer.\n\nOkay, I have now collected all the necessary information:\n\n*   **Name:** Jennifer\n*   **Company Name:** Aaron Dynamics\n*   **Contact Number:** 66778899\n*   **Email ID:** jennifer@aarondynamics.co.uk\n*   **Port of Loading:** Houston\n*   **Port of Delivery:** Hazira\n*   **Pickup Address:** Same as Port of Loading (Houston)\n*   **Delivery Address:** Same as Port of Delivery (Hazira)\n*   **Package Summary:**\n    *   HS Code: 8419 5091\n    *   Item 1: TEXAS TOWER 130-E03, 17,800mm x 4700mm x 5200mm, 100 MT, Qty: 1\n    *   Item 2: TEXAS TOWER 130-E05, 25,300mm x 4500mm x 5000mm, 148 MT, Qty: 1\n    *   Item 3: TEXAS TOWER 132-E02, 22,000mm x 4500mm x 4100mm, 98 MT, Qty: 1\n\nYour RFQ ID is: 9287\n\nThank you for providing all the details.\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"

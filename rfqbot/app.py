@@ -1,6 +1,24 @@
 from setup import *
-from langapp import parse_rfq,parse_user_messages
+from langapp import parse_rfq
 
+async def parse_user_messages(agent_state):
+    '''This function reads data from json file and concatenates all user messages.'''
+
+    # with open(file_to_save,"r") as f:
+    #     data = json.load(f)
+    data = agent_state
+    messages = data['llm_context']['messages']
+    # user_messages = '\n'.join([i['content'] for i in messages if i['type'] == 'UserMessage' or i['type'] == 'AssistantMessage'])
+    user_messages = []
+
+    for i in messages:
+        if i['type'] in ('UserMessage','AssistantMessage'):
+            if isinstance(i.get('content'),str): # If UserMessage is a string
+                user_messages.append(i['content'])
+    
+    user_messages = '\n'.join(user_messages)
+
+    return user_messages
 
 async def main():
     agent_state = None
