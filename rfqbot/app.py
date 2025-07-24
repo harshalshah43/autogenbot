@@ -1,24 +1,24 @@
 from setup import *
+from langapp import parse_rfq,parse_user_messages
+
 
 async def main():
     agent_state = None
-    result,agent_state = await call_agent("hi",agent_state)
-    print(f"AI Assistant: {result.chat_message.content}")
+    response,agent_state = await call_agent("hi",agent_state)
+    print(f"AI Assistant: {response.chat_message.content}")
     while True:
-        message = input("You:")
+        message = input("Yo" \
+        "u:")
         if message!= "quit":
-            # result,agent_state = asyncio.run(call_agent(message,agent_state))
-            result,agent_state = await call_agent(message,agent_state)
-            print(f"AI Assistant: {result.chat_message.content}")
+            response,agent_state = await call_agent(message,agent_state)
+            print(f"AI Assistant: {response.chat_message.content}")
 
-            if "rfq id" in result.chat_message.content.lower():
+            if "rfq id" in response.chat_message.content.lower():
                 agent_state = await agent1.save_state()
-                # print(agent_state)
                 
                 with open(file_to_save, "w") as f:
                     json.dump(agent_state, f, indent=4)
                 
-                # print(await parse_user_messages(agent_state))
                 print("\nSession ended after RFQ was filed.")
                 break
             
@@ -26,7 +26,7 @@ async def main():
             agent_state = await agent1.save_state()
             with open(file_to_save, "w") as f:
                 json.dump(agent_state, f, indent=4)
-            # print(await parse_user_messages(agent_state))
+            # print(await sparse_user_messages(agent_state))
             break
     
     print(parse_rfq(await parse_user_messages(agent_state)))

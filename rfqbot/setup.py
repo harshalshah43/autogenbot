@@ -17,7 +17,6 @@ from autogen_core.tools import FunctionTool
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 from nearest_ports import *
-from langapp import parse_rfq
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
@@ -51,28 +50,11 @@ async def call_agent(message,agent_state):
         await agent1.load_state(agent_state)    
     
     # result = await agent1.run(task=message)
-    result = await agent1.on_messages([TextMessage(content = message,source = 'user')],CancellationToken())
+    response = await agent1.on_messages([TextMessage(content = message,source = 'user')],CancellationToken())
     agent_state = await agent1.save_state()
-    return result,agent_state
+    return response,agent_state
 
 file_to_save = "rfq_data.json"
 
-async def parse_user_messages(agent_state):
-    '''This function reads data from json file and concatenates all user messages.'''
 
-    # with open(file_to_save,"r") as f:
-    #     data = json.load(f)
-    data = agent_state
-    messages = data['llm_context']['messages']
-    # user_messages = '\n'.join([i['content'] for i in messages if i['type'] == 'UserMessage' or i['type'] == 'AssistantMessage'])
-    user_messages = []
-
-    for i in messages:
-        if i['type'] in ('UserMessage','AssistantMessage'):
-            if isinstance(i.get('content'),str): # If UserMessage is a string
-                user_messages.append(i['content'])
-    
-    user_messages = '\n'.join(user_messages)
-
-    return user_messages
 
