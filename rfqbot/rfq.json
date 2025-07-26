@@ -1,22 +1,18 @@
 {
     "pol": [
-        "houston"
+        "nhava sheva"
     ],
     "pod": [
-        "hazira"
+        "port of spain"
     ],
     "contact_names": [
-        "jennifer"
+        "Jim Liu"
     ],
     "contact_numbers": [
-        "66778899"
+        "45123456"
     ],
-    "pickup_addresses": [
-        "houston"
-    ],
-    "delivery_addresses": [
-        "hazira"
-    ],
-    "package_summary": "HS Code: 8419 5091\nItem 1: TEXAS TOWER 130-E03, 17,800mm x 4700mm x 5200mm, 100 MT, Qty: 1\nItem 2: TEXAS TOWER 130-E05, 25,300mm x 4500mm x 5000mm, 148 MT, Qty: 1\nItem 3: TEXAS TOWER 132-E02, 22,000mm x 4500mm x 4100mm, 98 MT, Qty: 1",
-    "rfq_id": "9287"
+    "pickup_addresses": null,
+    "delivery_addresses": null,
+    "package_summary": "30 boxes 5 mt 45 X 50 X 60 m",
+    "rfq_id": null
 }

@@ -3,14 +3,9 @@ autogen-core
 autogen-ext
 dotenv
 openai
-tiktoken
 autogen-ext[http-tool]
 autogen-ext[openai]
 langchain-community
 faiss-cpu
 langchain_google_genai
-pypdf
-langchain_huggingface
-langchain-pinecone
-langchain-groq
 geopy

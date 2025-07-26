@@ -9,62 +9,40 @@
                 "type": "UserMessage"
             },
             {
-                "content": "Hello! How can I help you with your shipping needs today? I can help you with a new shipping quote. To get started, I need some information from you.\n\nFirst, could you please provide the following details:\n\n*   **Port of Loading:**\n*   **Port of Delivery:**\n*   **Pickup Address:**\n*   **Delivery Address:**\n*   **Package Summary:** (e.g., type of goods, dimensions, weight, quantity)\n",
+                "content": "Hello! I'm here to help you with your shipping needs. To start, could you please provide me with your name, company name, contact number, and email ID?\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "pol is port of houston, pod is hazira addresses are pol and pod only =, company name is aaron dynamics, jennifer@aarondynamics.co.uk,66778899",
+                "content": "nhava sheva to port of spain",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I need a bit more information to proceed.\n\n1.  Could you please confirm the full pickup and delivery addresses?\n2.  Also, can you provide a package summary, including the type of goods, dimensions, weight, and quantity?\n3.  What is your name?\n",
+                "content": "Okay, I can help you with that. But before proceeding with the shipping details, I need your name, company name, contact number, and email ID.\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "HS Code: 8419 5091 Sr noEquipmentLength(mm)Width       (mm)Height(mm)Unit Weight in MTQty1TEXAS TOWER 130-E0317,8004700520010012TEXAS TOWER 130-E0525,3004500500014813TEXAS TOWER 132-E0222,00045004100981",
+                "content": "nhava sheva to port of spain, package sumary is 30 boxes 5 mt 45 X 50 X 60 m, pol and pod are same as adddresses",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Thank you for the package summary.\n\nI still need the full pickup and delivery addresses, and your name. Once I have that, I\u2019ll generate a quote for you.\n",
+                "content": "Okay, I can help you with that. But before proceeding with the shipping details, I need your name, company name, contact number, and email ID. Also, can you provide the pickup address and delivery address?\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "same as pol and pod, confirm this rfq",
+                "content": "yang seng shipping company jim liu jimliu@yansengshipping.co.cn, phone 45123456",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, just to confirm, the pickup address is the same as the Port of Loading (Houston), and the delivery address is the same as the Port of Delivery (Hazira). Is that correct? Also can you provide your name?\n",
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": "yes",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": "Could you please provide your name?\n",
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": "jennifer ",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": "Thank you, Jennifer.\n\nOkay, I have now collected all the necessary information:\n\n*   **Name:** Jennifer\n*   **Company Name:** Aaron Dynamics\n*   **Contact Number:** 66778899\n*   **Email ID:** jennifer@aarondynamics.co.uk\n*   **Port of Loading:** Houston\n*   **Port of Delivery:** Hazira\n*   **Pickup Address:** Same as Port of Loading (Houston)\n*   **Delivery Address:** Same as Port of Delivery (Hazira)\n*   **Package Summary:**\n    *   HS Code: 8419 5091\n    *   Item 1: TEXAS TOWER 130-E03, 17,800mm x 4700mm x 5200mm, 100 MT, Qty: 1\n    *   Item 2: TEXAS TOWER 130-E05, 25,300mm x 4500mm x 5000mm, 148 MT, Qty: 1\n    *   Item 3: TEXAS TOWER 132-E02, 22,000mm x 4500mm x 4100mm, 98 MT, Qty: 1\n\nYour RFQ ID is: 9287\n\nThank you for providing all the details.\n",
+                "content": "Thank you for providing your information.\n\nName: Jim Liu\nCompany Name: Yang Seng Shipping Company\nContact Number: 45123456\nEmail ID: jimliu@yansengshipping.co.cn\n\nNow that I have your information, could you please provide the following shipping details:\n\n*   Port of Loading (POL):\n*   Port of Delivery (POD):\n*   Pickup Address:\n*   Delivery Address:\n*   Package Summary: (You mentioned 30 boxes, 5 MT, 45 X 50 X 60 m)\n\nOnce I have all of this, I\u2019ll generate an RFQ ID for you.\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
