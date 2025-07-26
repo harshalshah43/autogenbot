@@ -28,9 +28,10 @@ async def main():
             # print(await sparse_user_messages(agent_state))
             break
     
-    print(parse_rfq(await parse_user_messages(agent_state)))
+    conversation_messages = parse_rfq(await parse_user_messages(agent_state))
+    print(conversation_messages)
     with open("rfq.json", "w") as f:
-        json.dump(parse_rfq(await parse_user_messages(agent_state)), f, indent=4)
+        json.dump(conversation_messages, f, indent=4)
 
 # Driver Code
 if __name__ == "__main__":

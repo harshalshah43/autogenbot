@@ -13,6 +13,7 @@ MAJOR_TRADING_PORTS_DATA = [
     {"port_name": "Port of Xiamen", "city": "Xiamen", "country": "China", "category": "global_port", "lat": 24.4798, "lon": 118.0894},
     {"port_name": "Port of Dalian", "city": "Dalian", "country": "China", "category": "global_port", "lat": 38.9155, "lon": 121.6147},
     {"port_name": "Port of Rizhao", "city": "Rizhao", "country": "China", "category": "global_port", "lat": 35.4267, "lon": 119.4623},
+    {"port_name": "Taicang Port (Runhe Terminal)", "city": "Suzhou", "country": "China", "category": "global_port", "lat": 35.4267, "lon": 119.4623},
     {"port_name": "Port of Yingkou", "city": "Yingkou", "country": "China", "category": "global_port", "lat": 40.6698, "lon": 122.2359},
     {"port_name": "Port of Los Angeles", "city": "Los Angeles", "country": "USA", "category": "global_port", "lat": 34.0522, "lon": -118.2437},
     {"port_name": "Port of Long Beach", "city": "Long Beach", "country": "USA", "category": "global_port", "lat": 33.7701, "lon": -118.1937},
@@ -52,20 +53,22 @@ MAJOR_TRADING_PORTS_DATA = [
 
 
     # Indian Ports
-    {"port_name": "Jawaharlal Nehru Port (JNPT)", "city": "Navi Mumbai", "state": "Maharashtra", "country": "India", "category": "indian_port", "lat": 19.0330, "lon": 73.0297},
+    {"port_name": "Jawaharlal Nehru Port (JNPT) or Nhava Sheva", "city": "Navi Mumbai", "state": "Maharashtra", "country": "India", "category": "indian_port", "lat": 19.0330, "lon": 73.0297},
     {"port_name": "Mumbai Port", "city": "Mumbai", "state": "Maharashtra", "country": "India", "category": "indian_port", "lat": 19.0760, "lon": 72.8777},
     {"port_name": "Mundra Port", "city": "Mundra", "state": "Gujarat", "country": "India", "category": "indian_port", "lat": 22.8687, "lon": 69.7214},
+    {"port_name": "Mundra Port", "city": "Surat", "state": "Gujarat", "country": "India", "category": "indian_port", "lat": 22.8687, "lon": 69.7214},
     {"port_name": "Kandla Port (Deendayal Port)", "city": "Kandla", "state": "Gujarat", "country": "India", "category": "indian_port", "lat": 23.0487, "lon": 70.2281},
     {"port_name": "Chennai Port", "city": "Chennai", "state": "Tamil Nadu", "country": "India", "category": "indian_port", "lat": 13.0827, "lon": 80.2707},
     {"port_name": "Visakhapatnam Port", "city": "Visakhapatnam", "state": "Andhra Pradesh", "country": "India", "category": "indian_port", "lat": 17.6868, "lon": 83.2185},
     {"port_name": "Paradip Port", "city": "Paradip", "state": "Odisha", "country": "India", "category": "indian_port", "lat": 20.2520, "lon": 86.6669},
     {"port_name": "Haldia Dock Complex", "city": "Haldia", "state": "West Bengal", "country": "India", "category": "indian_port", "lat": 22.0725, "lon": 88.0827},
-    {"port_name": "Kolkata Port (Syama Prasad Mookerjee Port Trust)", "city": "Kolkata", "state": "West Bengal", "country": "India", "category": "indian_port", "lat": 22.5726, "lon": 88.3639},
+    {"port_name": "Kolkata Port (Shyama Prasad Mookerjee Port Trust)", "city": "Kolkata", "state": "West Bengal", "country": "India", "category": "indian_port", "lat": 22.5726, "lon": 88.3639},
     {"port_name": "Cochin Port", "city": "Kochi", "state": "Kerala", "country": "India", "category": "indian_port", "lat": 9.9312, "lon": 76.2673},
     {"port_name": "New Mangalore Port", "city": "Mangaluru", "state": "Karnataka", "country": "India", "category": "indian_port", "lat": 12.9142, "lon": 74.8560},
     {"port_name": "Mormugao Port", "city": "Mormugao", "state": "Goa", "country": "India", "category": "indian_port", "lat": 15.2533, "lon": 73.8078},
     {"port_name": "V.O. Chidambaranar Port (Tuticorin Port)", "city": "Thoothukudi", "state": "Tamil Nadu", "country": "India", "category": "indian_port", "lat": 8.7642, "lon": 78.1348},
     {"port_name": "Kamarajar Port (Ennore Port)", "city": "Ennore", "state": "Tamil Nadu", "country": "India", "category": "indian_port", "lat": 13.2625, "lon": 80.3429},
+    {"port_name": "Kamarajar Port (Ennore Port)", "city": "Chennai", "state": "Tamil Nadu", "country": "India", "category": "indian_port", "lat": 13.2625, "lon": 80.3429},
 
     # Middle East Ports
     {"port_name": "Port of Jebel Ali", "city": "Dubai", "country": "UAE", "category": "middle_east_port", "lat": 25.0742, "lon": 55.1868},
@@ -84,6 +87,7 @@ MAJOR_TRADING_PORTS_DATA = [
     {"port_name": "Port of Richards Bay", "city": "Richards Bay", "country": "South Africa", "category": "africa_port", "lat": -28.7667, "lon": 32.0333},
     {"port_name": "Port of Cape Town", "city": "Cape Town", "country": "South Africa", "category": "africa_port", "lat": -33.9249, "lon": 18.4241},
     {"port_name": "Port of Lagos (Apapa & Tin Can Island)", "city": "Lagos", "country": "Nigeria", "category": "africa_port", "lat": 6.5244, "lon": 3.3792},
+    {"port_name": "Tincan Island Port", "city": "Lagos", "country": "Nigeria", "category": "africa_port", "lat": 6.5244, "lon": 3.3792},
     {"port_name": "Port of Mombasa", "city": "Mombasa", "country": "Kenya", "category": "africa_port", "lat": -4.0435, "lon": 39.6682},
     {"port_name": "Port of Tanger-Med", "city": "Tanger-Med", "country": "Morocco", "category": "africa_port", "lat": 35.8828, "lon": -5.5039},
     {"port_name": "Port of Dar es Salaam", "city": "Dar es Salaam", "country": "Tanzania", "category": "africa_port", "lat": -6.7924, "lon": 39.2083},

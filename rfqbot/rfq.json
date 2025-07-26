@@ -1,18 +1,22 @@
 {
     "pol": [
-        "nhava sheva"
+        "Mundra Port"
     ],
     "pod": [
-        "port of spain"
+        "Mina Abd Allah, Kuwait"
     ],
     "contact_names": [
-        "Jim Liu"
+        "Hemal"
     ],
     "contact_numbers": [
-        "45123456"
+        "0000000000"
     ],
-    "pickup_addresses": null,
-    "delivery_addresses": null,
-    "package_summary": "30 boxes 5 mt 45 X 50 X 60 m",
-    "rfq_id": null
+    "pickup_addresses": [
+        "L&T Hazira Surat Gujarat"
+    ],
+    "delivery_addresses": [
+        "Mina Abdullah Refinery, Mina Abd Allah, Kuwait"
+    ],
+    "package_summary": "3 boxes, 30 x 40 x 45 m each weighing 13 mt",
+    "rfq_id": "7829"
 }

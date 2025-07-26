@@ -141,8 +141,8 @@ def calculate_haversine_distance(lat1, lon1, lat2, lon2):
 
 
 
-def find_ports(input_city:str):
-    """This tool matches city with available cities and fetches nearest port returns best matches"""
+def find_ports(place:str):
+    """In this tool you give a city or country and it will return ports"""
 
     port_data = MAJOR_TRADING_PORTS_DATA
 
@@ -150,27 +150,33 @@ def find_ports(input_city:str):
     city_list = list(set(port['city'] for port in port_data))
 
     # Get closest city match
-    closest = difflib.get_close_matches(input_city, city_list, n=1, cutoff=0.6)
-
+    closest = difflib.get_close_matches(place, city_list, n=5, cutoff=0.6)
     if not closest:
-        print(f"No close city match found for '{input_city}'.")
+        print(f"No close city match found for '{place}'.")
         country_list = list(set(port['country'] for port in port_data))
 
-        closest = difflib.get_close_matches(input_city, country_list, n=1, cutoff=0.6)
-        print(closest)
+        closest = difflib.get_close_matches(place, country_list, n=5, cutoff=0.6)
+
         if not closest:
-            return f"No close match found for '{input_city}'."
+            print(f"No close country found for '{place}'.")
+            category_list = list(set(port['category'] for port in port_data))
+            closest = difflib.get_close_matches(place, category_list, n=5, cutoff=0.7)
+
+            if not closest:
+                return f"No close country found for '{place}'."
 
 
-    closest_city = closest[0]
+    # closest_city = closest[0]
 
     # Filter ports by closest matching city
-    ports_in_city = [port['port_name'] for port in port_data if port['city'] == closest_city]
-    ports_in_country = [port['port_name'] for port in port_data if port['country'] == closest_city]
+    ports_in_city = []
+    ports_in_country = []
+    for closer in closest:
+        ports_in_city.extend([port['port_name'] for port in port_data if port['city'] == closer])
+        ports_in_country.extend([port['port_name'] for port in port_data if port['country'] == closer])
 
     major_ports = ports_in_city + ports_in_country
-
-    return ', '.join(major_ports)
+    return '\n'.join(major_ports)
 
 # from langchain_community.tools import DuckDuckGoSearchRun
 # from langchain_community.tools import TavilySearchResults
