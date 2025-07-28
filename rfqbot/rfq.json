@@ -1,22 +1,22 @@
 {
     "pol": [
-        "Mundra Port"
+        "Port of Izmir"
     ],
     "pod": [
-        "Mina Abd Allah, Kuwait"
+        "Port of Haifa"
     ],
     "contact_names": [
-        "Hemal"
+        "Jagdish"
     ],
     "contact_numbers": [
-        "0000000000"
+        "+44 33112211"
     ],
     "pickup_addresses": [
-        "L&T Hazira Surat Gujarat"
+        "40 Old Street Izmir"
     ],
     "delivery_addresses": [
-        "Mina Abdullah Refinery, Mina Abd Allah, Kuwait"
+        "30 Old Street Haifa"
     ],
-    "package_summary": "3 boxes, 30 x 40 x 45 m each weighing 13 mt",
-    "rfq_id": "7829"
+    "package_summary": "30 x 45 x 2 mt with 40 boxes, each weighing 40 mt",
+    "rfq_id": "8632"
 }

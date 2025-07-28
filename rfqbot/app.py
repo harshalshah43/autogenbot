@@ -11,27 +11,24 @@ async def main():
         if message!= "quit":
             response,agent_state = await call_agent(message,agent_state)
             print(f"AI Assistant: {response.chat_message.content}")
+            
+            agent_state = await agent1.save_state()
 
             if "rfq id" in response.chat_message.content.lower():
-                agent_state = await agent1.save_state()
-                
-                with open(file_to_save, "w") as f:
-                    json.dump(agent_state, f, indent=4)
+                save_rfq(agent_state, full_client_conversation)
                 
                 print("\nSession ended after RFQ was filed.")
                 break
             
         else:
             agent_state = await agent1.save_state()
-            with open(file_to_save, "w") as f:
-                json.dump(agent_state, f, indent=4)
+            save_rfq(agent_state, full_client_conversation)
             # print(await sparse_user_messages(agent_state))
             break
     
     conversation_messages = parse_rfq(await parse_user_messages(agent_state))
     print(conversation_messages)
-    with open("rfq.json", "w") as f:
-        json.dump(conversation_messages, f, indent=4)
+    save_rfq(conversation_messages,rfq_filename)
 
 # Driver Code
 if __name__ == "__main__":

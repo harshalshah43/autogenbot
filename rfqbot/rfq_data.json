@@ -9,62 +9,101 @@
                 "type": "UserMessage"
             },
             {
-                "content": "Hi there! How can I help you today with your shipping needs?\n",
+                "content": "Hello! I can help you with your logistics needs. To start, please provide the following information:\n\n**Logistics Information:**\n*   **Port of Loading:**\n*   **Port of Delivery:**\n*   **Pickup Address:**\n*   **Delivery Address:**\n*   **Package Summary (e.g., dimensions, weight, contents):**\n",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "Pick up address : L&T Hazira Surat Gujarat pls suggest port.",
+                "content": "izmir to haifa suggest ports",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I need a bit more information to help you.\n\nCould you please provide:\n\n*   The delivery address.\n*   A description of the package you'll be shipping (e.g., type of goods, weight, dimensions).\n*   Your name, company name, contact number, and email ID.\n\nI can also help you with port suggestions once you provide the place of delivery.\n",
+                "content": [
+                    {
+                        "id": "",
+                        "arguments": "{\"place\":\"Izmir\"}",
+                        "name": "find_ports"
+                    },
+                    {
+                        "id": "",
+                        "arguments": "{\"place\":\"Haifa\"}",
+                        "name": "find_ports"
+                    }
+                ],
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "delivery: Mina Abdullah Refinery, Mina Abd Allah, Kuwait",
+                "content": [
+                    {
+                        "content": "Port of Izmir",
+                        "name": "find_ports",
+                        "call_id": "",
+                        "is_error": false
+                    },
+                    {
+                        "content": "Port of Haifa\nHaldia Dock Complex",
+                        "name": "find_ports",
+                        "call_id": "",
+                        "is_error": false
+                    }
+                ],
+                "type": "FunctionExecutionResultMessage"
+            },
+            {
+                "content": "yes",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I have the delivery address.\n\nTo suggest the best port for your shipment, could you please clarify the port of loading? You mentioned the pickup address is in Hazira, Surat, Gujarat. Are you planning to ship from a port in that area? If you're unsure, I can suggest some ports in Gujarat.\n\nAlso, please provide:\n\n*   A description of the package you'll be shipping (e.g., type of goods, weight, dimensions).\n*   Your name, company name, contact number, and email ID.\n",
+                "content": "Okay, so the Port of Loading is **Port of Izmir** and the Port of Delivery is **Port of Haifa**.\n\nNow, please provide the remaining logistics information:\n\n*   **Pickup Address:**\n*   **Delivery Address:**\n*   **Package Summary (e.g., dimensions, weight, contents):**",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "hemal L and T hemal@larsenandtubro.com no phone",
+                "content": "30,old street haifa and 40 old street izmir",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Thank you, but I need a valid phone number to proceed. Please also provide the package details.\n",
+                "content": "Thank you. So, to confirm:\n\n*   **Port of Loading:** Port of Izmir\n*   **Port of Delivery:** Port of Haifa\n*   **Pickup Address:** 40 Old Street Izmir\n*   **Delivery Address:** 30 Old Street Haifa\n\nPlease provide the **Package Summary (e.g., dimensions, weight, contents)**.",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "3 boxes, 30 x 40 x 45 m each weighing 13 mt",
+                "content": "30 x 45 x 2 mt with 40 box each",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Thank you. And could you please provide a valid phone number?\n",
+                "content": "Thank you for the package summary.\n\nNow, I need to collect your contact information:\n\n**Customer Information:**\n*   **Name:**\n*   **Company Name:**\n*   **Contact Number:**\n*   **Email ID:**",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
             },
             {
-                "content": "000000000",
+                "content": "weight of each box is 40mt ",
                 "source": "user",
                 "type": "UserMessage"
             },
             {
-                "content": "Okay, I have almost all the information I need.\n\nTo confirm, here's what I have so far:\n\n*   **Port of Loading:** (Still need to confirm - are you shipping from a port in the Hazira, Surat, Gujarat area? If so, I can suggest some.)\n*   **Port of Delivery:** Mina Abd Allah, Kuwait\n*   **Pickup Address:** L&T Hazira Surat Gujarat\n*   **Delivery Address:** Mina Abdullah Refinery, Mina Abd Allah, Kuwait\n*   **Package Summary:** 3 boxes, 30 x 40 x 45 m each weighing 13 mt\n*   **Name:** Hemal\n*   **Company:** L and T\n*   **Email:** hemal@larsenandtubro.com\n*   **Contact Number:** 0000000000\n\nCould you please confirm the port of loading? If you'd like me to suggest ports in the Hazira, Surat area, just let me know!\n",
+                "content": "Understood. So the package summary is: **30 x 45 x 2 mt with 40 boxes, and each box weighs 40 mt.**\n\nNow, please provide your contact information:\n\n**Customer Information:**\n*   **Name:**\n*   **Company Name:**\n*   **Contact Number:**\n*   **Email ID:**",
+                "thought": null,
+                "source": "AI_Assistant",
+                "type": "AssistantMessage"
+            },
+            {
+                "content": "abc company jagdish jagdish@abc.com +44 33112211",
+                "source": "user",
+                "type": "UserMessage"
+            },
+            {
+                "content": "Thank you. Here's a summary of all the information you've provided:\n\n**Logistics Information:**\n*   **Port of Loading:** Port of Izmir\n*   **Port of Delivery:** Port of Haifa\n*   **Pickup Address:** 40 Old Street Izmir\n*   **Delivery Address:** 30 Old Street Haifa\n*   **Package Summary:** 30 x 45 x 2 mt with 40 boxes, each weighing 40 mt.\n\n**Customer Information:**\n*   **Name:** Jagdish\n*   **Company Name:** ABC Company\n*   **Contact Number:** +44 33112211\n*   **Email ID:** jagdish@abc.com\n\nPlease confirm if all the details are correct.",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"
@@ -75,63 +114,7 @@
                 "type": "UserMessage"
             },
             {
-                "content": [
-                    {
-                        "id": "",
-                        "arguments": "{\"place\":\"Hazira, Surat, Gujarat\"}",
-                        "name": "find_ports"
-                    }
-                ],
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": [
-                    {
-                        "content": "No close country found for 'Hazira, Surat, Gujarat'.",
-                        "name": "find_ports",
-                        "call_id": "",
-                        "is_error": false
-                    }
-                ],
-                "type": "FunctionExecutionResultMessage"
-            },
-            {
-                "content": "please try again ",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": [
-                    {
-                        "id": "",
-                        "arguments": "{\"place\":\"Gujarat\"}",
-                        "name": "find_ports"
-                    }
-                ],
-                "thought": null,
-                "source": "AI_Assistant",
-                "type": "AssistantMessage"
-            },
-            {
-                "content": [
-                    {
-                        "content": "Mundra Port\nPort of Fujairah",
-                        "name": "find_ports",
-                        "call_id": "",
-                        "is_error": false
-                    }
-                ],
-                "type": "FunctionExecutionResultMessage"
-            },
-            {
-                "content": "select first one",
-                "source": "user",
-                "type": "UserMessage"
-            },
-            {
-                "content": "Okay, so we have:\n\n*   **Port of Loading:** Mundra Port\n*   **Port of Delivery:** Mina Abd Allah, Kuwait\n*   **Pickup Address:** L&T Hazira Surat Gujarat\n*   **Delivery Address:** Mina Abdullah Refinery, Mina Abd Allah, Kuwait\n*   **Package Summary:** 3 boxes, 30 x 40 x 45 m each weighing 13 mt\n*   **Name:** Hemal\n*   **Company:** L and T\n*   **Email:** hemal@larsenandtubro.com\n*   **Contact Number:** 0000000000\n\nThank you for providing all the necessary information. Your RFQ ID is 7829. You will be contacted shortly with a quote.\n",
+                "content": "Thank you for the confirmation!\n\nYour RFQ ID is **8632**.\n\nThank you for choosing us for your logistics needs. You will be contacted soon regarding your request. Have a great day!",
                 "thought": null,
                 "source": "AI_Assistant",
                 "type": "AssistantMessage"

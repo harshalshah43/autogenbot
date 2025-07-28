@@ -1,6 +1,6 @@
 import streamlit as st
 from setup import *
-from langapp import parse_rfq
+from langapp import parse_rfq,parse_user_messages
 
 
 # Initialize session state
