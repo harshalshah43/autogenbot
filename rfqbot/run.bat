@@ -11,6 +11,6 @@ REM Change to your script's directory
 cd /d "D:\AIAgent\autogen\rfqbot"
 
 REM Run your Python script
-python app.py
+streamlit run appui.py
 
 pause

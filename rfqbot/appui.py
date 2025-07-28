@@ -1,61 +1,81 @@
 import streamlit as st
+import atexit
 from setup import *
 from langapp import parse_rfq,parse_user_messages
 
+# Streamlit app
+st.title("🧠 AI RFQ Agent")
 
 # Initialize session state
 if "agent_state" not in st.session_state:
     st.session_state.agent_state = None
 
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+# Displaying conversation history if there is one
+if st.session_state.agent_state is not None:
+    data = st.session_state.agent_state
+    messages = data['llm_context']['messages']
+    for i in messages:
+        if i['type'] == 'UserMessage':
+            if isinstance(i.get('content'),str):
+                with st.chat_message('You',avatar = '👤'):
+                    st.markdown(f"{i['content']}")
+        if i['type'] == 'AssistantMessage':
+            if isinstance(i.get('content'),str):
+                with st.chat_message('You',avatar = '🤖'):
+                    st.markdown(f"{i['content']}")
+        if i['type'] == 'FunctionExecutionResultMessage':
+            if isinstance(i.get('content'),list):
+                if i['content']: # if list is not empty
+                    with st.chat_message('AI',avatar = '🤖'):
+                        st.markdown(f"{i['content'][0]['content']}")
 
-if "session_ended" not in st.session_state:
-    st.session_state.session_ended = False
 
-# Title
-st.title("📦 Logistics AI Assistant (RFQ Generator)")
+# Input message
+user_input = st.chat_input("Enter your message:", key="user_input")
 
-# Show chat history
-for speaker, msg in st.session_state.chat_history:
-    if speaker == "user":
-        st.chat_message("user").write(msg)
-    else:
-        st.chat_message("assistant").write(msg)
 
-# Async call handler using asyncio coroutine
-async def handle_message(message):
-    result, st.session_state.agent_state = await call_agent(message, st.session_state.agent_state)
-    st.session_state.chat_history.append(("user", message))
-    st.session_state.chat_history.append(("assistant", result.chat_message.content))
+if user_input:
+    if user_input.lower().strip() != 'quit':
+        with st.spinner("Thinking..."):
+            # Run the async call inside Streamlit
+            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state))
+            
+            st.session_state.agent_state = agent_state
+            
+            if response.chat_message.type == "TextMessage":
+                if "RFQ has been filed. This session is now complete." in response.chat_message.content:
 
-    if "rfq id" in result.chat_message.content.lower():
-        st.session_state.session_ended = True
+                    save_conversation(st.session_state.agent_state,full_client_conversation)
+                    
+                    rfq_dict = parse_rfq(asyncio.run(parse_user_messages(agent_state)))
+                    
+                    save_rfq(rfq_dict,rfq_filename)
 
-        agent_state = await agent1.save_state()
-        with open(file_to_save, "w") as f:
-            json.dump(agent_state, f, indent=4)
+                    with st.chat_message('AI',avatar = '🤖'):
+                        st.markdown("Session ended after RFQ was filed.")
+                        st.markdown("If you wish to file another rfq, enter YES else type quit")
+                
 
-        user_messages = await parse_user_messages(agent_state)
-        rfq = parse_rfq(user_messages)
-        with open("rfq.json", "w") as f:
-            json.dump(rfq, f, indent=4)
-
-        st.success("RFQ filed successfully ✅")
-        st.json(rfq)
-
-# Use chat input
-if not st.session_state.session_ended:
-    user_input = st.chat_input("Enter your message...")
-    if user_input:
-        asyncio.run(handle_message(user_input))  # This works inside a single block cleanly
-
-else:
-    st.warning("Session ended. Refresh to start a new one.")
-
+                # st.session_state.agent_state = None
+                # st.session_state.chat_history = []
+                # st.session_state.session_ended = False
+    # asyncio.run(gemini_model_client.close())
+    st.rerun()
 
 if st.button("🔄 Reset Chat"):
     st.session_state.agent_state = None
     st.session_state.chat_history = []
     st.session_state.session_ended = False
+    # asyncio.run(gemini_model_client.close())
     st.rerun()
+
+
+
+@atexit.register
+def shutdown():
+    try:
+        loop = asyncio.new_event_loop()
+        loop.run_until_complete(gemini_model_client.close())
+        loop.close()
+    except Exception as e:
+        print("Error closing model client:", e)

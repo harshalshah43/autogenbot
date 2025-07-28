@@ -21,7 +21,7 @@ from tool_functions import *
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
-    model="gemini-2.5-flash",
+    model="gemini-2.0-flash",
     api_key=os.environ.get("GOOGLE_API_KEY"),
 )
 
@@ -42,7 +42,8 @@ agent1 = AssistantAgent(
         "You must then collect customer information:- Name,Company Name, Contact Number, Email id"
         "Once the information is collected, get final confirmation from the user." 
         "Once confirmed generate a random 4-digit number as the RFQ ID, Do not generate RFQ id unless customer information is collected."
-        "thank the user, inform the user that he/she will be contacted soon, and end the conversation. Do not continue the conversation after collecting all details."
+        "thank the user, inform the user that he/she will be contacted soon."
+        "end the conversation with this: 'RFQ has been filed. This session is now complete.'"
     ),
     tools = [find_ports_tool]
 )
@@ -57,14 +58,25 @@ async def call_agent(message,agent_state):
     return response,agent_state
 
 full_client_conversation = "conversations/conv_{}.json"
-rfq_filename = "rfq/rfq_{}.json"
+rfq_filename = "rfqs/rfq_{}.json"
 
-def save_rfq(agent_state,filename):
+def save_conversation(agent_state,filename = "conversations/conv_{}.json"):
     datetime_str = datetime.datetime.now().strftime("%Y-%m-%d:%H:%M:%S").replace(":","_")
     if agent_state is not None:
+        os.makedirs('conversations', exist_ok=True)
         with open(filename.format(datetime_str), "w") as f:
             json.dump(agent_state, f, indent=4)
-        print("file saved")
+            print("file saved")
     else:
         print("not saved")
     
+def save_rfq(data,filename = "rfqs/rfq_{}.json"):
+    datetime_str = datetime.datetime.now().strftime("%Y-%m-%d:%H:%M:%S").replace(":","_")
+    if data is not None:
+        rfq_id = data.get("rfq_id","")
+        os.makedirs('rfqs', exist_ok=True)
+        with open(filename.format(datetime_str + "_" + rfq_id), "w") as f:
+            json.dump(data, f, indent=4)
+            print("file saved")
+    else:
+        print("not saved")
