@@ -15,5 +15,6 @@ dependencies = [
     "langchain-google-genai>=2.1.8",
     "ollama>=0.5.1",
     "openai>=1.97.2",
+    "psycopg2>=2.9.10",
     "streamlit>=1.47.1",
 ]
