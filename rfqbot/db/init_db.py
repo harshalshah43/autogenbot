@@ -33,3 +33,19 @@ def fetch_rfq(rfq_id:int) -> models.RFQ:
             stmt = sa.select(models.RFQ).where(models.RFQ.rfq_id == rfq_id).limit(1)
             res = session.execute(stmt).scalar_one_or_none()
             return res
+
+def update_rfq(updates:dict) -> models.RFQ | None:
+    existing_rfq = fetch_rfq(updates.get('rfq_id'))
+    if not existing_rfq:
+        print(f'RFQ not found with ID {updates.get("rfq_id")}')
+        return None
+
+    with orm.Session(engine) as session:
+        with session.begin():
+            rfq = session.merge(existing_rfq)
+            for key,value in updates.items():
+                if hasattr(rfq, key):
+                    setattr(rfq, key, value)
+            print(f"✅ Updated RFQ {updates.get('rfq_id')} with fields: {list(updates.keys())}")
+            return rfq
+
