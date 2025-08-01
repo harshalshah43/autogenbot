@@ -4,12 +4,12 @@ from langapp import *
 
 async def main():
     agent_state = None
-    response,agent_state = await call_agent("hi",agent_state)
+    response,agent_state = await call_agent("hi",agent_state,agent1)
     print(f"AI Assistant: {response.chat_message.content}")
     while True:
         message = input("You:")
         if message!= "quit":
-            response,agent_state = await call_agent(message,agent_state)
+            response,agent_state = await call_agent(message,agent_state,agent1)
             print(f"AI Assistant: {response.chat_message.content}")
             
             agent_state = await agent1.save_state()
