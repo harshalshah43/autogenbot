@@ -21,7 +21,7 @@ from tool_functions import *
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     api_key=os.environ.get("GOOGLE_API_KEY"),
 )
 
@@ -50,7 +50,9 @@ agent1 = AssistantAgent(
 
 async def call_agent(message,agent_state):
     if agent_state:
-        await agent1.load_state(agent_state)    
+        await agent1.load_state(agent_state)
+    else:
+        await agent1.on_reset(agent_state)
     
     # result = await agent1.run(task=message)
     response = await agent1.on_messages([TextMessage(content = message,source = 'user')],CancellationToken())

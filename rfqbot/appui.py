@@ -4,7 +4,17 @@ from setup import *
 from langapp import parse_rfq,parse_user_messages
 
 # Streamlit app
+st.set_page_config(page_title="AI RFQ Agent", page_icon="🧠", layout="wide")
 st.title("🧠 AI RFQ Agent")
+
+# Add custom CSS for Calibri font
+st.markdown("""
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Initialize session state
 if "agent_state" not in st.session_state:
@@ -16,12 +26,12 @@ if st.session_state.agent_state is not None:
     messages = data['llm_context']['messages']
     for i in messages:
         if i['type'] == 'UserMessage':
-            if isinstance(i.get('content'),str):
-                with st.chat_message('You',avatar = '👤'):
+            if isinstance(i.get('content'), str):
+                with st.chat_message('User', avatar='👤'):
                     st.markdown(f"{i['content']}")
         if i['type'] == 'AssistantMessage':
-            if isinstance(i.get('content'),str):
-                with st.chat_message('You',avatar = '🤖'):
+            if isinstance(i.get('content'), str):
+                with st.chat_message('AI', avatar='🤖'):
                     st.markdown(f"{i['content']}")
         if i['type'] == 'FunctionExecutionResultMessage':
             if isinstance(i.get('content'),list):
@@ -29,10 +39,8 @@ if st.session_state.agent_state is not None:
                     with st.chat_message('AI',avatar = '🤖'):
                         st.markdown(f"{i['content'][0]['content']}")
 
-
 # Input message
 user_input = st.chat_input("Enter your message:", key="user_input")
-
 
 if user_input:
     if user_input.lower().strip() != 'quit':
@@ -53,24 +61,18 @@ if user_input:
 
                     with st.chat_message('AI',avatar = '🤖'):
                         st.markdown("Session ended after RFQ was filed.")
-                        st.markdown("If you wish to file another rfq, enter YES else type quit")
-                
+                        st.markdown("If you wish to file another RFQ, enter YES else type quit")
 
-                # st.session_state.agent_state = None
-                # st.session_state.chat_history = []
-                # st.session_state.session_ended = False
-    # asyncio.run(gemini_model_client.close())
+    # Reset the page if needed
     st.rerun()
 
 if st.button("🔄 Reset Chat"):
     st.session_state.agent_state = None
     st.session_state.chat_history = []
     st.session_state.session_ended = False
-    # asyncio.run(gemini_model_client.close())
     st.rerun()
 
-
-
+# Graceful shutdown
 @atexit.register
 def shutdown():
     try:
