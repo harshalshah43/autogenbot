@@ -5,9 +5,8 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-import asyncio
 from autogen_ext.models.openai import OpenAIChatCompletionClient
-from autogen_ext.models.ollama import OllamaChatCompletionClient
+# from autogen_ext.models.ollama import OllamaChatCompletionClient
 
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.messages import TextMessage
@@ -15,7 +14,7 @@ from autogen_core import CancellationToken
 
 from autogen_core.tools import FunctionTool
 
-from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_google_genai import ChatGoogleGenerativeAI
 
 from tool_functions import *
 
