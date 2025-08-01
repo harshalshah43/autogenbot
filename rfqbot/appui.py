@@ -1,7 +1,7 @@
 import atexit
 from setup import *
 from langapp import parse_rfq,parse_user_messages
-import asyncio
+import streamlit as st
 
 # Streamlit app
 st.title("🧠 Register your RFQ with us here.")
@@ -32,10 +32,8 @@ if st.session_state.agent_state is not None:
 
 if st.button("🔄 Reset Chat"):
     st.session_state.agent_state = None
-    st.session_state.chat_history = []
-    st.session_state.session_ended = False
-    agent_state,agent1 = None,None
-    agent1 = initialize_agent()
+    agent_state,team1 = None,None
+    team1 = reset_team(team1)
     
     # asyncio.run(gemini_model_client.close())
     st.rerun()
@@ -50,7 +48,7 @@ if user_input:
     if user_input.lower().strip() != 'quit':
         with st.spinner("Thinking..."):
             # Run the async call inside Streamlit
-            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state,agent1))
+            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state,team1))
             
             st.session_state.agent_state = agent_state
             

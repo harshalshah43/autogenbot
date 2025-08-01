@@ -1,7 +1,9 @@
 import json
 import os
 import datetime
+from prompts import *
 
+import asyncio
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -37,20 +39,12 @@ def initialize_agent():
         model_client=gemini_model_client,
         # model_client=ollama_model_client,
         description="A friendly AI agent that files user complaints.",
-            system_message = (
-        "You are an assistant that helps customers file an rfq. Customers will come to you to for a quotation. Your job is to gather necessary information so that sales department can prepare best quotation."
-        "You must ask for logistic related information:- port of loading, port of delivery, pickup address, delivery address and package summary."
-        "You may use a tool to make port suggestions if user asks, although it is not mandatory"
-        "You must then collect customer information:- Name,Company Name, Contact Number, Email id"
-        "Once the information is collected, get final confirmation from the user." 
-        "Once confirmed generate a random 4-digit number as the RFQ ID, Do not generate RFQ id unless customer information is collected."
-        "thank the user, inform the user that he/she will be contacted soon."
-        "end the conversation with this: 'RFQ has been filed. This session is now complete.'" \
-        "Do not continue the conversation after collecting all details."
-        ),
-        tools = [find_ports_tool,generate_rfqid]
+        system_message = system_message2,
+        tools = [find_ports_tool,generate_rfqid],
+        reflect_on_tool_use=True
     )
-
+    print('agent1 initialized',datetime.datetime.now().strftime("%Y-%m-%d %H:%M%S"))
+    
     return agent1
 
 agent1 = initialize_agent()

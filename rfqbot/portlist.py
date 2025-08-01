@@ -81,6 +81,7 @@ MAJOR_TRADING_PORTS_DATA = [
     {"port_name": "Port Salalah", "city": "Salalah", "country": "Oman", "category": "middle_east_port", "lat": 17.0151, "lon": 54.0924},
     {"port_name": "Jubail Commercial Port", "city": "Jubail", "country": "Saudi Arabia", "category": "middle_east_port", "lat": 27.0135, "lon": 49.6631},
     {"port_name": "Port of Fujairah", "city": "Fujairah", "country": "UAE", "category": "middle_east_port", "lat": 25.1167, "lon": 56.3400},
+    {"port_name": "The Port of Shuwaikh", "city": "Kuwait City", "country": "Kuwait", "category": "middle_east_port", "lat": 25.1167, "lon": 56.3400},
 
     # Africa Ports
     {"port_name": "Port of Durban", "city": "Durban", "country": "South Africa", "category": "africa_port", "lat": -29.8587, "lon": 31.0218},
