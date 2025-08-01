@@ -29,11 +29,14 @@ if st.session_state.agent_state is not None:
                     with st.chat_message('AI',avatar = '🤖'):
                         st.markdown(f"{i['content'][0]['content']}")
 
+if 'rfq_id' in st.session_state:
+    st.chat_message("Your RFQ has been filed")
+
 
 if st.button("🔄 Reset Chat"):
     st.session_state.agent_state = None
-    agent_state,team1 = None,None
-    team1 = reset_team(team1)
+    agent_state,agent1 = None,None
+    agent1 = initialize_agent()
     
     # asyncio.run(gemini_model_client.close())
     st.rerun()
@@ -48,7 +51,7 @@ if user_input:
     if user_input.lower().strip() != 'quit':
         with st.spinner("Thinking..."):
             # Run the async call inside Streamlit
-            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state,team1))
+            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state,agent1))
             
             st.session_state.agent_state = agent_state
             
@@ -66,7 +69,8 @@ if user_input:
                         st.markdown("If you wish to file another rfq, enter YES else type quit")
                 
 
-                # st.session_state.agent_state = None
+                    st.session_state.agent_state = None
+                    agent_state,agent1 = None,None
                 # st.session_state.chat_history = []
                 # st.session_state.session_ended = False
     # asyncio.run(gemini_model_client.close())

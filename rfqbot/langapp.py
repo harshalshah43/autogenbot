@@ -29,6 +29,12 @@ class RFQState(BaseModel):
         default=None,
         description="Valid contact numbers. Infer if clear."
     )
+    company_name: str = Field(
+        description="Company Name of Customer"
+    )
+    email: str = Field(
+        description="Email of the Customer"
+    )
     pickup_addresses: Optional[List[Stripped]] = Field(
         default=None,
         description="Pickup/Supplier's pickup address (street/city/country only). Exclude port names and unrelated signature content"
