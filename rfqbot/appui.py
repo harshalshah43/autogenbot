@@ -37,7 +37,7 @@ if st.session_state.agent_state is not None:
                     st.markdown(msg['content'][0]['content'])
 
 # -------------------- Chat Input --------------------
-user_input = st.chat_input("Type your message here (e.g., 'I want to ship 10 containers')")
+user_input = st.chat_input("Type your RFQ details here")
 
 if user_input:
     lower_input = user_input.strip().lower()
