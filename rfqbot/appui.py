@@ -37,7 +37,15 @@ if st.session_state.agent_state is not None:
                     st.markdown(msg['content'][0]['content'])
 
 # -------------------- Chat Input --------------------
-user_input = st.chat_input("Type your RFQ details here")
+col1,col2 = st.columns([0.8,0.2])
+with col1:
+    user_input = st.chat_input("Type your RFQ details here")
+with col2:
+    uploaded_file = st.file_uploader(
+            "Upload a file (PDF, DOCX, Image, etc.)", 
+            type=["pdf", "docx", "png", "jpg", "jpeg","csv","xlsx"]
+            ,width = 'stretch'
+        )
 
 if user_input:
     lower_input = user_input.strip().lower()
