@@ -1,13 +1,14 @@
 import json
 import os
 import datetime
+from prompts import *
 
+import asyncio
 from dotenv import load_dotenv
 load_dotenv()
 
-import asyncio
 from autogen_ext.models.openai import OpenAIChatCompletionClient
-from autogen_ext.models.ollama import OllamaChatCompletionClient
+# from autogen_ext.models.ollama import OllamaChatCompletionClient
 
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.messages import TextMessage
@@ -15,7 +16,7 @@ from autogen_core import CancellationToken
 
 from autogen_core.tools import FunctionTool
 
-from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_google_genai import ChatGoogleGenerativeAI
 
 from tool_functions import *
 
@@ -23,6 +24,7 @@ from tool_functions import *
 gemini_model_client = OpenAIChatCompletionClient(
     model="gemini-2.5-flash",
     api_key=os.environ.get("GOOGLE_API_KEY"),
+    max_tokens = 4096
 )
 
 # ollama_model_client = OllamaChatCompletionClient(model="llama3.2")
@@ -30,25 +32,24 @@ gemini_model_client = OpenAIChatCompletionClient(
 # nearest_port_tool = FunctionTool(get_nearest_ports,description="Tool that gives port suggestions by calling geoapify api")
 find_ports_tool = FunctionTool(find_ports,description='Tool uses fuzzy logic to get ports in a particular city or country')
 
-agent1 = AssistantAgent(
-    name = 'AI_Assistant',
-    model_client=gemini_model_client,
-    # model_client=ollama_model_client,
-    description="A friendly AI agent that files user complaints.",
-    system_message=(
-        "You are a helpful assistant for customers of a logistics company"
-        "You must ask for logistic related information:- port of loading, port of delivery, pickup address, delivery address and package summary."
-        "You may use a tool to make port suggestions if user asks, although it is not mandatory"
-        "You must then collect customer information:- Name,Company Name, Contact Number, Email id"
-        "Once the information is collected, get final confirmation from the user." 
-        "Once confirmed generate a random 4-digit number as the RFQ ID, Do not generate RFQ id unless customer information is collected."
-        "thank the user, inform the user that he/she will be contacted soon."
-        "end the conversation with this: 'RFQ has been filed. This session is now complete.'"
-    ),
-    tools = [find_ports_tool]
-)
+def initialize_agent():
+    
+    agent1 = AssistantAgent(
+        name = 'AI_Assistant',
+        model_client=gemini_model_client,
+        # model_client=ollama_model_client,
+        description="A friendly AI agent that files user complaints.",
+        system_message = system_message2,
+        tools = [find_ports_tool,generate_rfqid],
+        reflect_on_tool_use=True
+    )
+    print('agent1 initialized',datetime.datetime.now().strftime("%Y-%m-%d %H:%M%S"))
+    
+    return agent1
 
-async def call_agent(message,agent_state):
+agent1 = initialize_agent()
+
+async def call_agent(message,agent_state,agent1):
     if agent_state:
         await agent1.load_state(agent_state)
     else:
@@ -59,7 +60,7 @@ async def call_agent(message,agent_state):
     agent_state = await agent1.save_state()
     return response,agent_state
 
-full_client_conversation = "conversations/conv_{}.json"
+full_client_conversation = "conversations/chat_{}.json"
 rfq_filename = "rfqs/rfq_{}.json"
 
 def save_conversation(agent_state,filename = "conversations/conv_{}.json"):

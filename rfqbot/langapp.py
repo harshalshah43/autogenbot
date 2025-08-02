@@ -29,6 +29,12 @@ class RFQState(BaseModel):
         default=None,
         description="Valid contact numbers. Infer if clear."
     )
+    company_name: str = Field(
+        description="Company Name of Customer"
+    )
+    email: str = Field(
+        description="Email of the Customer"
+    )
     pickup_addresses: Optional[List[Stripped]] = Field(
         default=None,
         description="Pickup/Supplier's pickup address (street/city/country only). Exclude port names and unrelated signature content"
@@ -49,9 +55,7 @@ class RFQState(BaseModel):
 
 
 def parse_rfq(human_message) -> dict:
-    """Call this tool only when user has provided all logistics information.
-    Use this tool to extract user's port of loading, port of delivery, pickup address, delivery address and package summary. 
-    Also extract:-customer information:- Name,Company Name, Contact Number, Email id from human messages."""
+    """Call this tool only when user has provided all logistics information."""
 
     template="""
     Extract logistics information from User Query such as:- port of loading, port of delivery, pickup address, delivery address and package summary. 
