@@ -2,6 +2,10 @@ from .db_config import ConfigDB
 from . import models
 import sqlalchemy as sa
 from sqlalchemy import orm
+import datetime as dt
+import pytz
+
+IST = pytz.timezone('Asia/Kolkata')
 
 engine=sa.create_engine(ConfigDB.db_url())
 
@@ -12,40 +16,47 @@ def init_db():
     models.Base.metadata.create_all(engine)
 
 
-def insert_rfq(columns:dict):
+def insert_rfq(columns:dict) -> int:
     with orm.Session(engine) as session:
         with session.begin():
             new_rfq = models.RFQ(
-                rfq_id=columns.get('rfq_id'),
                 pol=columns.get('pol'),
                 pod=columns.get('pod'),
                 contact_names=columns.get('contact_names'),
                 contact_numbers=columns.get('contact_numbers'),
                 pickup_addresses=columns.get('pickup_addresses'),
-                delivery_addresses=columns.get('delivery_addresses')
+                delivery_addresses=columns.get('delivery_addresses'),
+                created_at=columns.get('created_at') or dt.datetime.now(dt.UTC),
             )
             session.add(new_rfq)
-            print(f'Inserted new RFQ {new_rfq.rfq_id}')
+        print(f'Inserted new RFQ id {new_rfq.rfq_id}')
+        return new_rfq.rfq_id
 
-def fetch_rfq(rfq_id:int) -> models.RFQ:
+def fetch_rfq(rfq_id: int) -> dict | None:
     with orm.Session(engine) as session:
-        with session.begin():
-            stmt = sa.select(models.RFQ).where(models.RFQ.rfq_id == rfq_id).limit(1)
-            res = session.execute(stmt).scalar_one_or_none()
-            return res
-
-def update_rfq(updates:dict) -> models.RFQ | None:
-    existing_rfq = fetch_rfq(updates.get('rfq_id'))
-    if not existing_rfq:
-        print(f'RFQ not found with ID {updates.get("rfq_id")}')
+        stmt = sa.select(models.RFQ).where(models.RFQ.rfq_id == rfq_id).limit(1)
+        res = session.scalar(stmt)
+        if res:
+            result = {col.name: getattr(res, col.name) for col in models.RFQ.__table__.columns}
+            if result.get("created_at"):
+                ist = result['created_at'].replace(tzinfo=pytz.utc).astimezone(IST)
+                result["created_at"] = ist.strftime("%Y-%m-%d %H:%M:%S")
+            return result
+        print('No RFQ found')
         return None
 
+def update_rfq(updates:dict) -> dict | None:
     with orm.Session(engine) as session:
         with session.begin():
-            rfq = session.merge(existing_rfq)
+            rfq_id = updates.get('rfq_id')
+            stmt = sa.select(models.RFQ).where(models.RFQ.rfq_id == rfq_id).limit(1)
+            existing_rfq = session.scalar(stmt)
+            if not existing_rfq:
+                print(f'RFQ {rfq_id} does not exist')
+                return None
             for key,value in updates.items():
-                if hasattr(rfq, key):
-                    setattr(rfq, key, value)
+                if hasattr(existing_rfq, key):
+                    setattr(existing_rfq, key, value)
             print(f"✅ Updated RFQ {updates.get('rfq_id')} with fields: {list(updates.keys())}")
-            return rfq
+        return updates
 

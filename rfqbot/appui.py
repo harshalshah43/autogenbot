@@ -2,9 +2,6 @@ import streamlit as st
 import atexit
 from setup import *
 from langapp import parse_rfq, parse_user_messages
-from db import init_db
-
-init_db.init_db()
 
 # -------------------- App Settings --------------------
 st.set_page_config(page_title="AI RFQ Agent", page_icon="🧠", layout="wide")

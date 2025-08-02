@@ -18,8 +18,7 @@ class RFQ(Base):
     __tablename__ = 'rfq_tbl'
     __table_args__ = {'schema': schema_name}
 
-    id: orm.Mapped[int] = orm.mapped_column(primary_key=True, autoincrement=True)
-    rfq_id: orm.Mapped[int] = orm.mapped_column(index=True)
+    rfq_id: orm.Mapped[int] = orm.mapped_column(primary_key=True,autoincrement=True)
     pol: orm.Mapped[Optional[str]] = orm.mapped_column()
     pod: orm.Mapped[Optional[str]] = orm.mapped_column()
     contact_names: orm.Mapped[Optional[str]] = orm.mapped_column()
