@@ -9,14 +9,15 @@ IST = pytz.timezone('Asia/Kolkata')
 
 engine=sa.create_engine(ConfigDB.db_url())
 
-def init_db():
-    with orm.Session(engine) as session:
-        with session.begin():
-            session.execute(sa.text(f'CREATE SCHEMA IF NOT EXISTS {models.schema_name}'))
-    models.Base.metadata.create_all(engine)
-
+def normalize_rfq_input(data: dict) -> dict:
+    def clean(value):
+        if isinstance(value, list):
+            return ", ".join(str(v) for v in value if v) if value else None
+        return value
+    return {k: clean(v) for k, v in data.items()}
 
 def insert_rfq(columns:dict) -> int:
+    columns = normalize_rfq_input(columns)
     with orm.Session(engine) as session:
         with session.begin():
             new_rfq = models.RFQ(
@@ -27,6 +28,7 @@ def insert_rfq(columns:dict) -> int:
                 pickup_addresses=columns.get('pickup_addresses'),
                 delivery_addresses=columns.get('delivery_addresses'),
                 created_at=columns.get('created_at') or dt.datetime.now(dt.UTC),
+                email=columns.get('email')
             )
             session.add(new_rfq)
         print(f'Inserted new RFQ id {new_rfq.rfq_id}')
@@ -46,6 +48,7 @@ def fetch_rfq(rfq_id: int) -> dict | None:
         return None
 
 def update_rfq(updates:dict) -> dict | None:
+    updates = normalize_rfq_input(updates)
     with orm.Session(engine) as session:
         with session.begin():
             rfq_id = updates.get('rfq_id')
