@@ -1,6 +1,7 @@
 import streamlit as st
 import atexit
 from setup import *
+from db.db_utils import *
 from langapp import parse_rfq, parse_user_messages
 
 # -------------------- App Settings --------------------
@@ -37,19 +38,20 @@ if st.session_state.agent_state is not None:
                     st.markdown(msg['content'][0]['content'])
 
 # -------------------- Chat Input --------------------
-col1,col2 = st.columns([0.8,0.2])
-with col1:
-    user_input = st.chat_input("Type your RFQ details here")
-with col2:
-    uploaded_file = st.file_uploader(
-            "Upload a file (PDF, DOCX, Image, etc.)", 
-            type=["pdf", "docx", "png", "jpg", "jpeg","csv","xlsx"]
-            ,width = 'stretch'
-        )
+# col1,col2 = st.columns([0.8,0.2])
+# with col1:
+#     user_input = st.chat_input("Type your RFQ details here")
+# with col2:
+#     uploaded_file = st.file_uploader(
+#             "Upload a file (PDF, DOCX, Image, etc.)", 
+#             type=["pdf", "docx", "png", "jpg", "jpeg","csv","xlsx"]
+#             ,width = 'stretch'
+#         )
 
+user_input = st.chat_input("Type your RFQ details here",accept_file = True,file_type = ["pdf", "docx", "png", "jpg", "jpeg","csv","xlsx"])
 if user_input:
-    lower_input = user_input.strip().lower()
-
+    lower_input = user_input.text.strip().lower() # user_input is of type ChatInputValue(text='', files=[])
+    user_input = user_input.text.strip().lower()
     # ✅ Handle reset commands from chat
     if lower_input in 'quit':
         st.session_state.agent_state = None
@@ -64,11 +66,11 @@ if user_input:
             st.session_state.agent_state = agent_state
 
             if response.chat_message.type == "TextMessage":
-                if "RFQ has been filed. This session is now complete." in response.chat_message.content:
+                if "RFQ is being filed. This session is now complete." in response.chat_message.content:
                     save_conversation(agent_state, full_client_conversation)
                     rfq_dict = parse_rfq(asyncio.run(parse_user_messages(agent_state)))
                     save_rfq(rfq_dict, rfq_filename)
-
+                    insert_rfq(rfq_dict)
                     with st.chat_message('AI',avatar = '🤖'):
                         st.markdown("Session ended after RFQ was filed.")
                         st.markdown("If you wish to file another RFQ, enter YES else type quit")

@@ -16,7 +16,7 @@ system_message2 = (
         "Once the information is collected, get final confirmation from the user." 
         "Once confirmed generate a random 4-digit number as the RFQ ID, Do not generate RFQ id unless customer information is collected."
         "thank the user, inform the user that he/she will be contacted soon."
-        "end the conversation with this: 'RFQ has been filed. This session is now complete.'" \
+        "end the conversation with this: 'RFQ is being filed. This session is now complete.'" \
         "Do not continue the conversation after collecting all details."
         )
 

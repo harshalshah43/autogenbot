@@ -40,7 +40,7 @@ def initialize_agent():
         # model_client=ollama_model_client,
         description="A friendly AI agent that files user complaints.",
         system_message = system_message2,
-        tools = [find_ports_tool,generate_rfqid],
+        tools = [find_ports_tool],
         reflect_on_tool_use=True
     )
     print('agent1 initialized',datetime.datetime.now().strftime("%Y-%m-%d %H:%M%S"))
