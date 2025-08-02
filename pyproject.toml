@@ -1,0 +1,20 @@
+[project]
+name = "autogenbot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "autogen-agentchat>=0.7.1",
+    "autogen-core>=0.7.1",
+    "autogen-ext[http-tool,openai]>=0.7.1",
+    "dotenv>=0.9.9",
+    "faiss-cpu>=1.11.0.post1",
+    "geopy>=2.4.1",
+    "langchain-community>=0.3.27",
+    "langchain-google-genai>=2.1.8",
+    "ollama>=0.5.1",
+    "openai>=1.97.2",
+    "psycopg2>=2.9.10",
+    "streamlit>=1.47.1",
+]

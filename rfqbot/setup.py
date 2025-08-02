@@ -22,7 +22,7 @@ from tool_functions import *
 
 # model_client =ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 gemini_model_client = OpenAIChatCompletionClient(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     api_key=os.environ.get("GOOGLE_API_KEY"),
     max_tokens = 4096
 )
@@ -32,26 +32,11 @@ gemini_model_client = OpenAIChatCompletionClient(
 # nearest_port_tool = FunctionTool(get_nearest_ports,description="Tool that gives port suggestions by calling geoapify api")
 find_ports_tool = FunctionTool(find_ports,description='Tool uses fuzzy logic to get ports in a particular city or country')
 
-def initialize_agent():
-    
-    agent1 = AssistantAgent(
-        name = 'AI_Assistant',
-        model_client=gemini_model_client,
-        # model_client=ollama_model_client,
-        description="A friendly AI agent that files user complaints.",
-        system_message = system_message2,
-        tools = [find_ports_tool,generate_rfqid],
-        reflect_on_tool_use=True
-    )
-    print('agent1 initialized',datetime.datetime.now().strftime("%Y-%m-%d %H:%M%S"))
-    
-    return agent1
-
-agent1 = initialize_agent()
-
 async def call_agent(message,agent_state,agent1):
     if agent_state:
-        await agent1.load_state(agent_state)    
+        await agent1.load_state(agent_state)
+    else:
+        await agent1.on_reset(agent_state)
     
     # result = await agent1.run(task=message)
     response = await agent1.on_messages([TextMessage(content = message,source = 'user')],CancellationToken())
