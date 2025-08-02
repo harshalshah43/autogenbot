@@ -26,7 +26,9 @@ class RFQ(Base):
     pickup_addresses: orm.Mapped[Optional[str]] = orm.mapped_column()
     delivery_addresses: orm.Mapped[Optional[str]] = orm.mapped_column()
     package_summary: orm.Mapped[Optional[str]] = orm.mapped_column()
+    email: orm.Mapped[Optional[str]] = orm.mapped_column()
+    company_name: orm.Mapped[Optional[str]] = orm.mapped_column()
     created_at: orm.Mapped[dt.datetime] = orm.mapped_column(nullable=False,server_default=sa.text("CURRENT_TIMESTAMP"))
-    status: orm.Mapped[Optional[str]] = orm.mapped_column()
-    reply_message: orm.Mapped[Optional[str]] = orm.mapped_column(server_default=sa.text("'IN_PROGRESS'"))
+    status: orm.Mapped[Optional[str]] = orm.mapped_column(server_default=sa.text("'IN_PROGRESS'"))
+    reply_message: orm.Mapped[Optional[str]] = orm.mapped_column()
 

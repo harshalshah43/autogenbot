@@ -9,12 +9,6 @@ IST = pytz.timezone('Asia/Kolkata')
 
 engine=sa.create_engine(ConfigDB.db_url())
 
-def init_db():
-    with orm.Session(engine) as session:
-        with session.begin():
-            session.execute(sa.text(f'CREATE SCHEMA IF NOT EXISTS {models.schema_name}'))
-    models.Base.metadata.create_all(engine)
-
 
 def insert_rfq(columns:dict) -> int:
     with orm.Session(engine) as session:
@@ -27,6 +21,7 @@ def insert_rfq(columns:dict) -> int:
                 pickup_addresses=columns.get('pickup_addresses'),
                 delivery_addresses=columns.get('delivery_addresses'),
                 created_at=columns.get('created_at') or dt.datetime.now(dt.UTC),
+                email=columns.get('email')
             )
             session.add(new_rfq)
         print(f'Inserted new RFQ id {new_rfq.rfq_id}')
