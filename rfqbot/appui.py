@@ -52,7 +52,7 @@ if user_input:
     # ✅ Otherwise proceed normally
     else:
         with st.spinner("Thinking... Please wait..."):
-            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state))
+            response, agent_state = asyncio.run(call_agent(user_input, st.session_state.agent_state,agent1))
             st.session_state.agent_state = agent_state
 
             if response.chat_message.type == "TextMessage":

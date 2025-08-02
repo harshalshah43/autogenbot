@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.0.6">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.0.7">
   <diagram name="Page-1" id="b0n86uY4JFtTPVabJfog">
-    <mxGraphModel dx="1226" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1042" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -92,7 +92,7 @@
         <mxCell id="vKMCBibGFw7yL1VoIiMP-30" value="RFQ Chat Bot Workflow" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="145" y="10" width="495" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vKMCBibGFw7yL1VoIiMP-31" value="Call API" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#d6b656;fillColor=#fff2cc;" parent="1" vertex="1">
+        <mxCell id="vKMCBibGFw7yL1VoIiMP-31" value="Tool Call" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#d6b656;fillColor=#fff2cc;" parent="1" vertex="1">
           <mxGeometry x="690" y="140" width="70" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vKMCBibGFw7yL1VoIiMP-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.527;entryY=0.04;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="vKMCBibGFw7yL1VoIiMP-31" target="vKMCBibGFw7yL1VoIiMP-11" edge="1">
