@@ -9,8 +9,15 @@ IST = pytz.timezone('Asia/Kolkata')
 
 engine=sa.create_engine(ConfigDB.db_url())
 
+def normalize_rfq_input(data: dict) -> dict:
+    def clean(value):
+        if isinstance(value, list):
+            return ", ".join(str(v) for v in value if v) if value else None
+        return value
+    return {k: clean(v) for k, v in data.items()}
 
 def insert_rfq(columns:dict) -> int:
+    columns = normalize_rfq_input(columns)
     with orm.Session(engine) as session:
         with session.begin():
             new_rfq = models.RFQ(
@@ -41,6 +48,7 @@ def fetch_rfq(rfq_id: int) -> dict | None:
         return None
 
 def update_rfq(updates:dict) -> dict | None:
+    updates = normalize_rfq_input(updates)
     with orm.Session(engine) as session:
         with session.begin():
             rfq_id = updates.get('rfq_id')
